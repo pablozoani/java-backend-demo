@@ -1,0 +1,37 @@
+@startuml
+
+title STORE UML
+
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Liberation Mono
+skinparam defaultFontSize 14
+skinparam defaultFontColor Black
+skinparam ArrowFontColor Black
+skinparam ArrowColor Grey
+'hide empty members
+
+Shelf *-- "0..*" Product
+Aisle *-- "0..*" Shelf
+Store *-- "0..*" Aisle
+
+interface Product {
+    +boolean sell()
+    +boolean sell(n: int)
+    +boolean addStock(n: int)
+}
+
+class ProductImpl implements Product {
+    -id: int
+    -description: String
+    -price: double
+    -stock: int
+
+    +ProductImpl(description: String, price: double, stock: int)
+}
+
+class Shelf <Product> extends ArrayList {}
+class Aisle <String, Shelf> extends HashMap {}
+class Store <String, Aisle> extends HashMap {}
+
+@enduml
