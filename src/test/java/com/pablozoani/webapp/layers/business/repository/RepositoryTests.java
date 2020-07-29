@@ -26,7 +26,7 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFOR
 
 @DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
 @SpringBootTest
-class RepositoryTEST {
+class RepositoryTests {
 
     @Autowired
     AcademyDAO academyDAO;
