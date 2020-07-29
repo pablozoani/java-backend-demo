@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.util.collections.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
@@ -72,7 +73,8 @@ class RepositoryTests {
 
         Set<Academy> academies = new HashSet<>();
 
-        academyDAO.saveAll(Set.of(academy2, academy3))
+
+        academyDAO.saveAll(Sets.newSet(academy2, academy3))
                   .forEach(academies::add);
 
         assertEquals(2, academies.size());
@@ -117,7 +119,7 @@ class RepositoryTests {
 
         Set<Academy> academies = new HashSet<>();
 
-        academies.addAll(Set.of(academy1, academy2, academy3));
+        academies.addAll(Sets.newSet(academy1, academy2, academy3));
 
         academyDAO.saveAll(academies);
 
@@ -139,13 +141,13 @@ class RepositoryTests {
 
         Set<Academy> academies = new HashSet<>();
 
-        academies.addAll(Set.of(academy1, academy2, academy3));
+        academies.addAll(Sets.newSet(academy1, academy2, academy3));
 
         academyDAO.saveAll(academies);
 
         academies.clear();
 
-        academyDAO.findAllById(Set.of(1L, 2L, 3L, 4L)).forEach(academies::add);
+        academyDAO.findAllById(Sets.newSet(1L, 2L, 3L, 4L)).forEach(academies::add);
 
         assertTrue(academies.size() == 3);
     }
@@ -161,7 +163,7 @@ class RepositoryTests {
 
         Set<Academy> academies = new HashSet<>();
 
-        academies.addAll(Set.of(academy1, academy2, academy3));
+        academies.addAll(Sets.newSet(academy1, academy2, academy3));
 
         academyDAO.saveAll(academies);
 
@@ -191,7 +193,7 @@ class RepositoryTests {
 
         academyDAO.save(academy3);
 
-        academy3 = academyDAO.findById(1L).orElseThrow();
+        academy3 = academyDAO.findById(1L).orElseThrow(RuntimeException::new);
 
         academyDAO.delete(academy3);
 
@@ -203,7 +205,7 @@ class RepositoryTests {
 
         Academy academy1 = new Academy("Academy One"), academy2 = new Academy("Academy Two");
 
-        academyDAO.saveAll(Set.of(academy1, academy2));
+        academyDAO.saveAll(Sets.newSet(academy1, academy2));
 
         assertEquals(2L, academyDAO.count());
 
@@ -219,7 +221,7 @@ class RepositoryTests {
             academy2 = new Academy("Academy Two"),
             academy3 = new Academy("Academy Three");
 
-        Iterable<Academy> academies = academyDAO.saveAll(Set.of(academy1, academy2, academy3));
+        Iterable<Academy> academies = academyDAO.saveAll(Sets.newSet(academy1, academy2, academy3));
 
         assertEquals(3L, academyDAO.count());
 

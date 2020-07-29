@@ -66,7 +66,7 @@ public class StartUp implements ApplicationListener<ContextRefreshedEvent> {
 
         courseDAO.save(oop);
 
-        academy = academyDAO.findById(1L).orElseThrow();
+        academy = academyDAO.findById(1L).orElseThrow(RuntimeException::new);
 
         Instructor instructorJane = new Instructor("Mary", "Jane", "jane@mary.bar");
 
