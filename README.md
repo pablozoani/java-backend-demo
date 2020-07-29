@@ -4,14 +4,18 @@
 
 ## Run in terminal from the root folder
 
-```java
+```
 mvn spring-boot:run
 ```
 
 ## File tree on initial commit
 
-```java
+```
 java-backend-demo
+ ├─> .circleci
+ │   └── config.yml
+ ├── .gitignore
+ ├── java-backend-demo-diagram.png
  ├── pom.xml
  ├── README.md
  └─> src
@@ -152,7 +156,11 @@ java-backend-demo
      │   │               ├─> layers
      │   │               │   ├─> business
      │   │               │   │   ├─> controller
-     │   │               │   │   ├─> dto
+     │   │               │   │   ├─> datatransferobject
+     │   │               │   │   │   ├── AcademyDTO.java
+     │   │               │   │   │   ├── CourseDTO.java
+     │   │               │   │   │   ├── InstructorDTO.java
+     │   │               │   │   │   └── StudentDTO.java
      │   │               │   │   ├─> repository
      │   │               │   │   │   ├── AcademyDAO.java
      │   │               │   │   │   ├── AcademyDAOImpl.java
@@ -168,6 +176,7 @@ java-backend-demo
      │   │               │   │   │   └── StudentDAOImpl.java
      │   │               │   │   └─> service
      │   │               │   │       ├── AcademyService.java
+     │   │               │   │       ├── AcademyServiceImpl.java
      │   │               │   │       ├── CourseService.java
      │   │               │   │       ├── InstructorService.java
      │   │               │   │       └── StudentService.java
@@ -182,6 +191,7 @@ java-backend-demo
      │   │               │       └── Student.java
      │   │               └── Main.java
      │   └─> resources
+     │       ├── -schema.sql
      │       └── application.yml
      └─> test
          └─> java
@@ -191,7 +201,7 @@ java-backend-demo
              │           └─> layers
              │               └─> business
              │                   └─> repository
-             │                       └── RepositoryTEST.java
+             │                       └── RepositoryTests.java
              └── ObjectTest.java
 ```
 
