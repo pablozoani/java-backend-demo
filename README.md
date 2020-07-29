@@ -1,5 +1,7 @@
 # Java Backend Demo Project
 
+[![CircleCI](https://circleci.com/gh/pablozoani/java-backend-demo.svg?style=svg)](https://circleci.com/gh/pablozoani/java-backend-demo)
+
 ## Run in terminal from the root folder
 
 ```java
