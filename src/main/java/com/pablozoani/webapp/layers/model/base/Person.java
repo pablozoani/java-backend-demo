@@ -32,6 +32,7 @@ public abstract class Person extends BaseEntity {
     private LocalDate dateOfBirth;
 
     @Getter
+    @Setter
     @CreationTimestamp
     private LocalDate registrationDate;
 
