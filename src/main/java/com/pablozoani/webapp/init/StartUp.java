@@ -41,7 +41,7 @@ public class StartUp implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        load();
+        //load();
     }
 
     private void load() {

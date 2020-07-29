@@ -39,7 +39,6 @@ public class FloorImpl implements Floor {
         return rooms.remove(roomKey) != null;
     }
 
-    // Works with jdk 14
     @Override
     public Room findRoom(int roomKey) {
 
@@ -52,20 +51,7 @@ public class FloorImpl implements Floor {
             return null;
         }
 
-        return switch (theRoom.getClass().getSimpleName()) {
-
-            case "LivingRoom" -> (LivingRoom) theRoom;
-
-            case "Kitchen" -> (Kitchen) theRoom;
-
-            case "BedRoom" -> (BedRoom) theRoom;
-
-            case "DiningRoom" -> (DiningRoom) theRoom;
-
-            case "BathRoom" -> (BathRoom) theRoom;
-
-            default -> throw new RuntimeException("Programming error report!");
-        };
+        return theRoom;
     }
 
     @Override
