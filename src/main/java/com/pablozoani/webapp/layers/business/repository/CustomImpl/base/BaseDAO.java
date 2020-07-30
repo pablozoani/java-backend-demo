@@ -1,4 +1,4 @@
-package com.pablozoani.webapp.layers.business.repository.base;
+package com.pablozoani.webapp.layers.business.repository.CustomImpl.base;
 
 import com.pablozoani.webapp.layers.model.base.BaseEntity;
 import lombok.extern.slf4j.Slf4j;

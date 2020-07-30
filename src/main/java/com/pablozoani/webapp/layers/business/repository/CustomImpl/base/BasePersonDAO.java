@@ -1,4 +1,4 @@
-package com.pablozoani.webapp.layers.business.repository.base;
+package com.pablozoani.webapp.layers.business.repository.CustomImpl.base;
 
 import com.pablozoani.webapp.layers.model.base.Person;
 import com.pablozoani.webapp.layers.model.base.Person_;
@@ -37,11 +37,11 @@ public abstract class BasePersonDAO<T extends Person, ID extends Serializable>
         return output;
     }
 
-    public Iterable<T> findByRegistrationDateAfter(LocalDate date) {
+    public Iterable<T> findByRegistrationDateGreaterThanEqual(LocalDate date) {
         return findByRegistrationDateBetween(date, LocalDate.of(5000, 1, 1));
     }
 
-    public Iterable<T> findByRegistrationDateBefore(LocalDate date) {
+    public Iterable<T> findByRegistrationDateLessThanEqual(LocalDate date) {
         return findByRegistrationDateBetween(LocalDate.of(1970, 1, 1), date);
     }
 }

@@ -1,11 +1,12 @@
-package com.pablozoani.webapp.layers.business.repository;
+package com.pablozoani.webapp.layers.business.repository.CustomImpl;
 
-import com.pablozoani.webapp.layers.business.repository.base.BaseDAO;
+import com.pablozoani.webapp.layers.business.repository.CustomImpl.base.BaseDAO;
 import com.pablozoani.webapp.layers.model.Course;
 import com.pablozoani.webapp.layers.model.Course_;
 import com.pablozoani.webapp.layers.model.base.FieldOfStudy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -18,6 +19,7 @@ import static com.pablozoani.utils.ConsoleColors.BLUE;
 import static com.pablozoani.utils.ConsoleColors.RESET;
 
 @Slf4j
+@Profile("custom")
 @Repository
 public class CourseDAOImpl extends BaseDAO<Course, Long>
     implements CourseDAO {
