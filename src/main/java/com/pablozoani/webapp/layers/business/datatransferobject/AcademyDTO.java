@@ -29,9 +29,6 @@ public class AcademyDTO {
 
         entity.setId(dto.getId());
 
-        dto.getCourses()
-           .forEach(courseDTO -> entity.addCourse(CourseDTO.toEntity(courseDTO)));
-
         return entity;
     }
 
@@ -41,8 +38,7 @@ public class AcademyDTO {
 
         final AcademyDTO dto = new AcademyDTO(entity.getName());
 
-        entity.getCourses()
-              .forEach(course -> dto.getCourses().add(CourseDTO.toDTO(course)));
+        dto.setId(entity.getId());
 
         return dto;
     }

@@ -64,9 +64,6 @@ public class CourseDTO {
 
         dto.setId(entity.getId());
 
-        entity.getStudents()
-              .forEach(student -> dto.getStudents().add(StudentDTO.toDTO(student)));
-
         return dto;
     }
 }

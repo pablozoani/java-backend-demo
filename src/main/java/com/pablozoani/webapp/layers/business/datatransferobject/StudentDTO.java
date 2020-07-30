@@ -47,9 +47,6 @@ public class StudentDTO {
 
         // student.setRegistrationDate(dto.getRegistrationDate());
 
-        dto.getCourses()
-           .forEach(courseDTO -> student.addCourse(CourseDTO.toEntity(courseDTO)));
-
         return student;
     }
 
@@ -64,9 +61,6 @@ public class StudentDTO {
         dto.setDateOfBirth(entity.getDateOfBirth());
 
         dto.setRegistrationDate(entity.getRegistrationDate());
-
-        entity.getCourses()
-              .forEach(course -> dto.getCourses().add(CourseDTO.toDTO(course)));
 
         return dto;
     }
