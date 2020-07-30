@@ -48,10 +48,12 @@ class RepositoryTests {
 
     @BeforeEach
     void setUp() {
+
     }
 
     @AfterEach
     void tearDown() {
+
     }
 
     @Test
@@ -72,7 +74,6 @@ class RepositoryTests {
         Academy academy3 = new Academy("Academy Three");
 
         Set<Academy> academies = new HashSet<>();
-
 
         academyDAO.saveAll(Sets.newSet(academy2, academy3))
                   .forEach(academies::add);
@@ -286,13 +287,13 @@ class RepositoryTests {
         instructorDAO.save(instructor2);
 
         Set<Instructor> instructors = Streams
-            .stream(instructorDAO.findByRegistrationDateAfter(LocalDate.now().minus(1, DAYS)))
+            .stream(instructorDAO.findByRegistrationDateGreaterThanEqual(LocalDate.now().minus(1, DAYS)))
             .collect(Collectors.toSet());
 
         assertEquals(2, instructors.size());
 
         instructors = Streams
-            .stream(instructorDAO.findByRegistrationDateAfter(LocalDate.now().plus(1, DAYS)))
+            .stream(instructorDAO.findByRegistrationDateGreaterThanEqual(LocalDate.now().plus(1, DAYS)))
             .collect(Collectors.toSet());
 
         assertEquals(0, instructors.size());
@@ -310,13 +311,13 @@ class RepositoryTests {
         instructor2 = instructorDAO.save(instructor2);
 
         Set<Instructor> instructors = Streams
-            .stream(instructorDAO.findByRegistrationDateBefore(LocalDate.now().plus(1, DAYS)))
+            .stream(instructorDAO.findByRegistrationDateLessThanEqual(LocalDate.now().plus(1, DAYS)))
             .collect(Collectors.toSet());
 
         assertEquals(2, instructors.size());
 
         instructors = Streams
-            .stream(instructorDAO.findByRegistrationDateBefore(LocalDate.now().minus(1, DAYS)))
+            .stream(instructorDAO.findByRegistrationDateLessThanEqual(LocalDate.now().minus(1, DAYS)))
             .collect(Collectors.toSet());
 
         assertEquals(0, instructors.size());
