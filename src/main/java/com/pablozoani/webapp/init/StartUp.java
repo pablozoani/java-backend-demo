@@ -1,6 +1,9 @@
 package com.pablozoani.webapp.init;
 
-import com.pablozoani.webapp.layers.business.repository.*;
+import com.pablozoani.webapp.layers.business.repository.AcademyDAO;
+import com.pablozoani.webapp.layers.business.repository.CourseDAO;
+import com.pablozoani.webapp.layers.business.repository.InstructorDAO;
+import com.pablozoani.webapp.layers.business.repository.StudentDAO;
 import com.pablozoani.webapp.layers.model.Academy;
 import com.pablozoani.webapp.layers.model.Course;
 import com.pablozoani.webapp.layers.model.Instructor;
