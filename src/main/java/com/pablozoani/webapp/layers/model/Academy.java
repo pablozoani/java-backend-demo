@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 public class Academy extends BaseEntity {
@@ -22,7 +23,7 @@ public class Academy extends BaseEntity {
     private String name;
 
     @Getter
-    @OneToMany(mappedBy = "academy", cascade = ALL)
+    @OneToMany(fetch = LAZY, mappedBy = "academy", cascade = ALL)
     private Set<Course> courses = new HashSet<>();
 
     protected Academy() {

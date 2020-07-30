@@ -10,14 +10,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 public class Instructor extends Person {
 
 
     @Getter
-    @OneToMany(mappedBy = "instructor",
-               cascade = ALL)
+    @OneToMany(fetch = LAZY, mappedBy="instructor", cascade = ALL)
     private Set<Course> courses = new HashSet<>();
 
     protected Instructor() {

@@ -10,11 +10,13 @@ import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class Student extends Person {
 
     @Getter
-    @ManyToMany(mappedBy = "students",
+    @ManyToMany(fetch = LAZY, mappedBy = "students",
                 cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Set<Course> courses = new HashSet<>();
 
