@@ -29,14 +29,12 @@ public class Course extends BaseEntity {
 
     @Getter
     @Setter
-    @ManyToOne(fetch = EAGER,
-               cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "instructor_id", nullable = false)
     private Instructor instructor;
 
     @Getter
-    @ManyToMany(fetch = LAZY,
-                cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = LAZY)
     @JoinTable(name = "course_student",
                joinColumns = @JoinColumn(name = "course_id"),
                inverseJoinColumns = @JoinColumn(name = "student_id"))
@@ -44,8 +42,7 @@ public class Course extends BaseEntity {
 
     @Getter
     @Setter
-    @ManyToOne(fetch = EAGER,
-               cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "academy_id", nullable = false)
     private Academy academy;
 

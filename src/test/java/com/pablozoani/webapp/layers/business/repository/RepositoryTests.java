@@ -10,10 +10,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.internal.util.collections.Sets;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -26,7 +28,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
 
 @DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@DataJpaTest
 class RepositoryTests {
 
     @Autowired
@@ -238,9 +241,15 @@ class RepositoryTests {
 
         Academy academy3 = new Academy("Academy Three");
 
+        academyDAO.save(academy3);
+
         Student student = new Student("Bruce", "Wayne", "bruce@wayne.com");
 
+        studentDAO.save(student);
+
         Instructor instructor = new Instructor("Clark", "Kent", "kent@clark.com");
+
+        instructorDAO.save(instructor);
 
         Course course = new Course("Acoustics II", FieldOfStudy.PHYSICS, instructor, academy3);
 

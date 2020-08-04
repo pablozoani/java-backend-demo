@@ -1,3 +1,4 @@
+# MySQL DDL
 
 CREATE TABLE `academy` (
   `id` bigint NOT NULL AUTO_INCREMENT,

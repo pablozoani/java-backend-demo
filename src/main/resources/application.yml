@@ -14,6 +14,7 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+    initialization-mode: always
   jpa:
     show-sql: true
     properties:
@@ -30,5 +31,5 @@ logging:
     com:
       pablozoani: DEBUG
     org:
-      springframework: ERROR
+      springframework: INFO
       hibernate: ERROR

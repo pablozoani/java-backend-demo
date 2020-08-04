@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
 
 import static com.pablozoani.webapp.layers.model.base.FieldOfStudy.COMPUTER_SCIENCE;
 import static com.pablozoani.webapp.layers.model.base.FieldOfStudy.MATHEMATICS;
@@ -47,19 +50,26 @@ public class StartUp implements ApplicationListener<ContextRefreshedEvent> {
         //load();
     }
 
+    @Transactional
     private void load() {
 
         Academy academy = new Academy("Software Engineering Academy");
 
+        academy = academyDAO.save(academy);
+
         Instructor instructorParker = new Instructor("Peter", "Parker", "spiderman@example.com");
 
-        Student studentWayne = new Student("Bruce", "Wayne", "batman@email.net");
+        instructorDAO.save(instructorParker);
+
+        Student studentWayne = new Student("Bruce", "Wayne", "batman@email.com");
 
         Student studentCroft = new Student("Lara", "Croft", "croft_lara@foo.com");
 
-        Student studentLane = new Student("Lois", "Lane", "lane@earth.universe");
+        Student studentLane = new Student("Lois", "Lane", "lane@lois.com");
 
-        Student studentKrueger = new Student("Freddy", "Krueger", "sleep@good.com");
+        Student studentKrueger = new Student("Freddy", "Krueger", "krueger@freddy.com");
+
+        studentDAO.saveAll(Arrays.asList(studentWayne, studentCroft, studentLane, studentKrueger));
 
         Course oop = new Course("Object Oriented Programming", COMPUTER_SCIENCE, instructorParker, academy);
 
@@ -69,9 +79,9 @@ public class StartUp implements ApplicationListener<ContextRefreshedEvent> {
 
         courseDAO.save(oop);
 
-        academy = academyDAO.findById(1L).orElseThrow(RuntimeException::new);
-
         Instructor instructorJane = new Instructor("Mary", "Jane", "jane@mary.bar");
+
+        instructorDAO.save(instructorJane);
 
         Course calculus = new Course("Calculus", MATHEMATICS, instructorJane, academy);
 

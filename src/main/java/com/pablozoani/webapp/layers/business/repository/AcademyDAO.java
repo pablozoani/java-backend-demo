@@ -8,4 +8,8 @@ import org.springframework.stereotype.Repository;
 @Profile("default")
 @Repository
 public interface AcademyDAO extends CrudRepository<Academy, Long> {
+
+    boolean existsByName(String name);
+
+    Iterable<Academy> findByNameContainingIgnoreCase(String name);
 }

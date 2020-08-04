@@ -3,7 +3,6 @@ package com.pablozoani.webapp.layers.model;
 import com.pablozoani.webapp.layers.model.base.Person;
 import lombok.Getter;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
@@ -16,8 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 public class Student extends Person {
 
     @Getter
-    @ManyToMany(fetch = LAZY, mappedBy = "students",
-                cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = LAZY, mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
 
     protected Student() {

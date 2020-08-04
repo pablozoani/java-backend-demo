@@ -2,17 +2,23 @@ package com.pablozoani.webapp.layers.business.datatransferobject;
 
 import com.pablozoani.webapp.layers.model.Academy;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class AcademyDTO {
 
     private Long id;
 
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String name;
 
     private Set<CourseDTO> courses = new HashSet<>();
