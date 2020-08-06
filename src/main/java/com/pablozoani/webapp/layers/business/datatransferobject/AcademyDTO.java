@@ -7,8 +7,6 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -21,11 +19,7 @@ public class AcademyDTO {
     @Size(min = 3, max = 255)
     private String name;
 
-    private Set<CourseDTO> courses = new HashSet<>();
-
-    public AcademyDTO(String name) {
-        this.name = name;
-    }
+    public AcademyDTO(String name) { this.name = name; }
 
     public static synchronized Academy toEntity(AcademyDTO dto) {
 
@@ -47,5 +41,13 @@ public class AcademyDTO {
         dto.setId(entity.getId());
 
         return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "AcademyDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

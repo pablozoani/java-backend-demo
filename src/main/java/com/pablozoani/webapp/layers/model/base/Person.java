@@ -34,11 +34,10 @@ public abstract class Person extends BaseEntity {
     @Getter
     @Setter
     @CreationTimestamp
+    @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-    protected Person() {
-
-    }
+    protected Person() { }
 
     public Person(String firstName, String lastName, String email) {
 
@@ -60,17 +59,15 @@ public abstract class Person extends BaseEntity {
     }
 
     @Override
-    public int hashCode() {
-        return getEmail().hashCode();
-    }
+    public int hashCode() { return getEmail().hashCode(); }
 
     @Override
     public String toString() {
         return "Person{" +
-               "firstName='" + firstName + '\'' +
-               ", lastName='" + lastName + '\'' +
-               ", email='" + email + '\'' +
-               ", birthDate=" + dateOfBirth +
-               "} " + super.toString();
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", birthDate=" + dateOfBirth +
+                "} " + super.toString();
     }
 }

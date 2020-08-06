@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -23,7 +23,7 @@ public class Academy extends BaseEntity {
     private String name;
 
     @Getter
-    @OneToMany(fetch = LAZY, mappedBy = "academy", cascade = ALL)
+    @OneToMany(fetch = LAZY, mappedBy = "academy", cascade = REMOVE)
     private Set<Course> courses = new HashSet<>();
 
     protected Academy() {
@@ -59,14 +59,12 @@ public class Academy extends BaseEntity {
     }
 
     @Override
-    public int hashCode() {
-        return getName().hashCode();
-    }
+    public int hashCode() { return getName().hashCode(); }
 
     @Override
     public String toString() {
         return "Academy{" +
-               "name='" + name + '\'' +
-               "} " + super.toString();
+                "name='" + name + '\'' +
+                "} " + super.toString();
     }
 }

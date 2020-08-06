@@ -7,8 +7,8 @@ import com.pablozoani.webapp.layers.model.base.FieldOfStudy;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -16,15 +16,16 @@ public class CourseDTO {
 
     private Long id;
 
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String title;
+
 
     private AcademyDTO academy;
 
     private FieldOfStudy field;
 
     private InstructorDTO instructor;
-
-    private Set<StudentDTO> students = new HashSet<>();
 
     public CourseDTO(String title, FieldOfStudy field, InstructorDTO instructor, AcademyDTO academy) {
 
@@ -65,5 +66,16 @@ public class CourseDTO {
         dto.setId(entity.getId());
 
         return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseDTO{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", academy=" + academy +
+                ", field=" + field +
+                ", instructor=" + instructor +
+                '}';
     }
 }

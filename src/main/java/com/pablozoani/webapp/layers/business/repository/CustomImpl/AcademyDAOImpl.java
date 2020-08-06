@@ -12,7 +12,7 @@ import javax.persistence.EntityManagerFactory;
 @Profile("custom")
 @Repository
 public class AcademyDAOImpl extends BaseDAO<Academy, Long>
-    implements AcademyDAO {
+        implements AcademyDAO {
 
     @Autowired
     public AcademyDAOImpl(EntityManagerFactory emf) {

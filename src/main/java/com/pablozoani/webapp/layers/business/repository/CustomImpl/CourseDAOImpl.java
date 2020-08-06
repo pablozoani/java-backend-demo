@@ -22,7 +22,7 @@ import static com.pablozoani.utils.ConsoleColors.RESET;
 @Profile("custom")
 @Repository
 public class CourseDAOImpl extends BaseDAO<Course, Long>
-    implements CourseDAO {
+        implements CourseDAO {
 
     @Autowired
     public CourseDAOImpl(EntityManagerFactory emf) {

@@ -21,7 +21,7 @@ import static com.pablozoani.utils.ConsoleColors.RESET;
 
 @Slf4j
 public abstract class BaseDAO<T extends BaseEntity, ID extends Serializable>
-    implements CrudRepository<T, ID> {
+        implements CrudRepository<T, ID> {
 
     protected final EntityManagerFactory emf;
 

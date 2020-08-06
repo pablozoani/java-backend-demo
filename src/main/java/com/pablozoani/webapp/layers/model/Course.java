@@ -36,8 +36,8 @@ public class Course extends BaseEntity {
     @Getter
     @ManyToMany(fetch = LAZY)
     @JoinTable(name = "course_student",
-               joinColumns = @JoinColumn(name = "course_id"),
-               inverseJoinColumns = @JoinColumn(name = "student_id"))
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id"))
     private Set<Student> students = new HashSet<>();
 
     @Getter
@@ -46,9 +46,7 @@ public class Course extends BaseEntity {
     @JoinColumn(name = "academy_id", nullable = false)
     private Academy academy;
 
-    protected Course() {
-
-    }
+    protected Course() { }
 
     public Course(String title, FieldOfStudy field, Instructor instructor, Academy academy) {
 
@@ -85,20 +83,29 @@ public class Course extends BaseEntity {
         Course course = (Course) o;
 
         return getTitle().equals(course.getTitle()) &&
-               getInstructor().equals(course.getInstructor()) &&
-               getAcademy().equals(course.getAcademy());
+                getInstructor().equals(course.getInstructor()) &&
+                getAcademy().equals(course.getAcademy());
     }
 
     @Override
     public int hashCode() {
-        return getTitle().hashCode() + getInstructor().hashCode() + getAcademy().hashCode();
+
+        int output = 0;
+
+        output += getTitle().hashCode();
+
+        output += getInstructor().hashCode();
+
+        output += getAcademy().hashCode();
+
+        return output;
     }
 
     @Override
     public String toString() {
         return "Course{" +
-               "title='" + title + '\'' +
-               ", field=" + field +
-               "} " + super.toString();
+                "title='" + title + '\'' +
+                ", field=" + field +
+                "} " + super.toString();
     }
 }

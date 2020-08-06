@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta name="author" content="Pablo Zoani">
+        <link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <title> Student </title>
+    </head>
+
+    <body class="d-flex flex-column h-100">
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+                <a class="navbar-brand" th:href="@{'/'}" href="#"> WebSample </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{'/'}" href="#"> Home </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" th:href="@{'/academy'}" href="#"> Academies </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" th:href="@{'/course'}" href="#"> Courses </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" th:href="@{'/instructor'}" href="#"> Instructors </a>
+                        </li>
+                        <li>
+                            <a class="nav-link active" th:href="@{'/student'}" href="#"> Students </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="container" style="margin-top: 100px;">
+                <form class="needs-validation" novalidate th:object="${student}" th:action="@{/student/save}" method="POST">
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{registrationDate}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="student_first_name"> First name </label>
+                                <input th:field="*{firstName}" id="student_first_name" type="text" class="form-control" required minlength="3" maxlength="255">
+                                <small class="text-muted"> * Required. </small>
+                                <div class="valid-feedback"> Ok</div>
+                                <div class="invalid-feedback"> The number of characters mus't be between 3 and 255</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="student_last_name"> Last name </label>
+                                <input th:field="*{lastName}" id="student_last_name" type="text" class="form-control" required minlength="3" maxlength="255">
+                                <small class="text-muted"> * Required. </small>
+                                <div class="valid-feedback"> Ok</div>
+                                <div class="invalid-feedback"> The number of characters mus't be between 3 and 255</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="student_email">Email</label>
+                                <input th:field="*{email}" id="student_email" type="email" class="form-control" required>
+                                <small class="text-muted"> * Required, Unique.</small>
+                                <div class="valid-feedback"> Ok</div>
+                                <div class="invalid-feedback"> Invalid email format or the number of characters mus't be between 3 and 255 </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="student_date_of_birth"> Date of birth </label>
+                                <input th:field="*{dateOfBirth}" id="student_date_of_birth" type="date" class="form-control" min="1900-10-01">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-primary"> Save</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <span th:if="${student.id} != null">
+                                <em>Registration Date: <span th:text="${student.registrationDate}">123</span></em>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <div class="container">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th> ID</th>
+                            <th> First name</th>
+                            <th> Last name</th>
+                            <th> Email</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody th:if{not #lists.isEmpty(students)}>
+                        <tr th:each="student_ : ${students}">
+                            <td th:text="${student_.id}"> 1</td>
+                            <td th:text="${student_.firstName}"> some student</td>
+                            <td th:text="${student_.lastName}"> some student</td>
+                            <td th:text="${student_.email}"> some student</td>
+                            <td><a th:href="@{'/student/' + ${student_.id} + '/update'}" href="#"> update </a></td>
+                            <td><a th:href="@{'/student/' + ${student_.id} + '/delete'}" href="#"> delete </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+        <footer class="footer mt-auto py-3">
+            <div class="container">
+                <span class="text-muted">&copy; 2020 Pablo Zoani</span>
+            </div>
+        </footer>
+        <script>
+            let today = new Date();
+            let dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("student_date_of_birth").setAttribute("max", today);
+        </script>
+        <script>
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    var forms = document.getElementsByClassName('needs-validation');
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </body>
+</html>

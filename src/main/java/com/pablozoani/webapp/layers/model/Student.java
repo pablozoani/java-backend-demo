@@ -18,24 +18,24 @@ public class Student extends Person {
     @ManyToMany(fetch = LAZY, mappedBy = "students")
     private Set<Course> courses = new HashSet<>();
 
-    protected Student() {
+    protected Student() { }
 
-    }
-
-    public Student(String firstName, String lastName, String email) {
-        super(firstName, lastName, email);
-    }
+    public Student(String firstName, String lastName, String email) { super(firstName, lastName, email); }
 
     public void addCourse(@NotNull Course course) {
+
+        courses.add(course);
+
         course.addStudent(this);
     }
 
     public void removeStudent(@NotNull Course course) {
+
+        courses.remove(course);
+
         course.removeStudent(this);
     }
 
     @Override
-    public String toString() {
-        return "Student{} " + super.toString();
-    }
+    public String toString() { return "Student{} " + super.toString(); }
 }

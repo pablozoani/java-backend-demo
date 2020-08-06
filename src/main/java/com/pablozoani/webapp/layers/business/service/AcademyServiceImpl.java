@@ -16,9 +16,7 @@ public class AcademyServiceImpl implements AcademyService {
 
     private final AcademyDAO academyDAO;
 
-    public AcademyServiceImpl(AcademyDAO academyDAO) {
-        this.academyDAO = academyDAO;
-    }
+    public AcademyServiceImpl(AcademyDAO academyDAO) { this.academyDAO = academyDAO; }
 
     public AcademyDTO saveAcademy(AcademyDTO dto) {
 
@@ -56,9 +54,7 @@ public class AcademyServiceImpl implements AcademyService {
         return output;
     }
 
-    public boolean existsByName(String name) {
-        return academyDAO.existsByName(name);
-    }
+    public boolean existsByName(String name) { return academyDAO.existsByName(name); }
 
     public Set<Academy> findAll() {
 

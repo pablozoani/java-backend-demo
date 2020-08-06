@@ -17,7 +17,8 @@
                 <p><a th:href="@{'/'}" href="index.html">Redirect to index page?</a></p>
                 <p> error message:
                 <ul>
-                    <p th:text="${exception.getMessage()}">...</p>
+                    <p th:if="${exception} != null" th:text="${exception.getMessage()}">...</p>
+                    <p th:if="${exception} == null"> No message available </p>
                 </ul>
                 </p>
             </ul>

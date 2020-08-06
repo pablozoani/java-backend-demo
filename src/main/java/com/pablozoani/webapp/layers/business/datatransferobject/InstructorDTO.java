@@ -2,29 +2,42 @@ package com.pablozoani.webapp.layers.business.datatransferobject;
 
 import com.pablozoani.webapp.layers.model.Instructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class InstructorDTO {
 
     private Long id;
 
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String firstName;
 
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String lastName;
 
+    @Email
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String email;
 
+    @Past
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate registrationDate;
-
-    private Set<CourseDTO> courses = new HashSet<>();
 
     public InstructorDTO(String firstName, String lastName, String email) {
 
@@ -45,7 +58,7 @@ public class InstructorDTO {
 
         instructor.setDateOfBirth(dto.getDateOfBirth());
 
-        // instructor.setRegistrationDate(dto.getRegistrationDate());
+        instructor.setRegistrationDate(dto.getRegistrationDate());
 
         return instructor;
     }
@@ -63,5 +76,17 @@ public class InstructorDTO {
         dto.setRegistrationDate(entity.getRegistrationDate());
 
         return dto;
+    }
+
+    @Override
+    public String toString() {
+        return "InstructorDTO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", registrationDate=" + registrationDate +
+                '}';
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j
 public abstract class BasePersonDAO<T extends Person, ID extends Serializable>
-    extends BaseDAO<T, ID> implements PersonDAO<T, ID> {
+        extends BaseDAO<T, ID> implements PersonDAO<T, ID> {
 
     public BasePersonDAO(EntityManagerFactory emf, Class<T> entityClass) {
         super(emf, entityClass);

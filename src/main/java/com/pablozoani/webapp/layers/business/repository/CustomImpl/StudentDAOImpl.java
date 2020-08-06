@@ -11,7 +11,7 @@ import javax.persistence.EntityManagerFactory;
 @Profile("custom")
 @Repository
 public class StudentDAOImpl extends BasePersonDAO<Student, Long>
-    implements StudentDAO {
+        implements StudentDAO {
 
     @Autowired
     public StudentDAOImpl(EntityManagerFactory emf) {

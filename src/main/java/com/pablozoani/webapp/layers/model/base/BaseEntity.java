@@ -18,14 +18,12 @@ public abstract class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public BaseEntity() {
-
-    }
+    public BaseEntity() { }
 
     @Override
     public String toString() {
         return "BaseEntity{" +
-               "id=" + id +
-               '}';
+                "id=" + id +
+                '}';
     }
 }
