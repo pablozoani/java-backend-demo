@@ -37,14 +37,6 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public boolean existsByEmail(String email) {
-
-        log.debug("existsByEmail() -> {}", email);
-
-        return instructorDAO.existsByEmail(email);
-    }
-
-    @Override
     public Set<Instructor> findAll() {
 
         log.debug("findAll()");

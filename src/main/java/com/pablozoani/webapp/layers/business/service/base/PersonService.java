@@ -6,9 +6,20 @@ import java.util.Set;
 
 public interface PersonService<T extends Person> {
 
-    boolean existsByEmail(String email);
+    /**
+     * Find all persons in the database.
+     *
+     * @return a Set with the persons
+     */
+    Set<T> findAll();
 
-    Set<? extends Person> findAll();
-
+    /**
+     * Retrieves a person by its id.
+     *
+     * @param id of the person
+     * @return a person if its found
+     * @throws IllegalArgumentException if param
+     * is null
+     */
     T findById(Long id);
 }

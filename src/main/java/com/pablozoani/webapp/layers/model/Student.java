@@ -4,6 +4,8 @@ import com.pablozoani.webapp.layers.model.base.Person;
 import lombok.Getter;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -15,7 +17,10 @@ import static javax.persistence.FetchType.LAZY;
 public class Student extends Person {
 
     @Getter
-    @ManyToMany(fetch = LAZY, mappedBy = "students")
+    @ManyToMany(fetch = LAZY)
+    @JoinTable(name = "course_student",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
     private Set<Course> courses = new HashSet<>();
 
     protected Student() { }
@@ -29,12 +34,7 @@ public class Student extends Person {
         course.addStudent(this);
     }
 
-    public void removeStudent(@NotNull Course course) {
-
-        courses.remove(course);
-
-        course.removeStudent(this);
-    }
+    void removeCourse(@NotNull Course course) { courses.remove(course); }
 
     @Override
     public String toString() { return "Student{} " + super.toString(); }

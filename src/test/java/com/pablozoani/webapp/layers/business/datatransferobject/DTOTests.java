@@ -4,8 +4,6 @@ import com.pablozoani.webapp.layers.model.Academy;
 import com.pablozoani.webapp.layers.model.Course;
 import com.pablozoani.webapp.layers.model.Instructor;
 import com.pablozoani.webapp.layers.model.Student;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -15,16 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class DTOTests {
-
-    @BeforeEach
-    void setUp() {
-
-    }
-
-    @AfterEach
-    void tearDown() {
-
-    }
 
     @Test
     void academyDtoToEntity() {

@@ -19,7 +19,10 @@ public class StudentServiceImpl implements StudentService {
     private final StudentDAO studentDAO;
 
     @Autowired
-    public StudentServiceImpl(StudentDAO studentDAO) { this.studentDAO = studentDAO; }
+    public StudentServiceImpl(StudentDAO studentDAO) {
+
+        this.studentDAO = studentDAO;
+    }
 
     @Override
     public Set<Student> findAll() {

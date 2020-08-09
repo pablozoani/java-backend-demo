@@ -29,8 +29,8 @@ public class ExceptionHandlerController {
     }
 
     @ResponseStatus(NOT_FOUND)
-    @ExceptionHandler(NotFoundException.class)
-    public ModelAndView notFound(NotFoundException exception) {
+    @ExceptionHandler({NotFoundException.class, NumberFormatException.class})
+    public ModelAndView notFound(RuntimeException exception) {
 
         log.debug("notFound()");
 

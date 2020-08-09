@@ -30,9 +30,7 @@ public class Academy extends BaseEntity {
 
     }
 
-    public Academy(String name) {
-        this.name = name;
-    }
+    public Academy(String name) { this.name = name; }
 
     public void addCourse(@NotNull Course course) {
 

@@ -54,8 +54,6 @@ public class AcademyServiceImpl implements AcademyService {
         return output;
     }
 
-    public boolean existsByName(String name) { return academyDAO.existsByName(name); }
-
     public Set<Academy> findAll() {
 
         log.debug("findByAll()");

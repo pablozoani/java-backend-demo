@@ -1,7 +1,7 @@
 package com.pablozoani.webapp.layers.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.pablozoani.webapp.layers.model.base.Person;
-import lombok.Getter;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -15,7 +15,7 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 public class Instructor extends Person {
 
-    @Getter
+    @JsonBackReference
     @OneToMany(fetch = LAZY, mappedBy = "instructor", cascade = REMOVE)
     private Set<Course> courses = new HashSet<>();
 
@@ -37,6 +37,10 @@ public class Instructor extends Person {
         courses.remove(course);
 
         course.setInstructor(null);
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
     }
 
     @Override

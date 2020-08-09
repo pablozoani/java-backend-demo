@@ -6,9 +6,6 @@ import com.pablozoani.webapp.layers.model.Instructor;
 import com.pablozoani.webapp.layers.model.Student;
 import com.pablozoani.webapp.layers.model.base.FieldOfStudy;
 import org.assertj.core.util.Streams;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.internal.util.collections.Sets;
@@ -43,21 +40,6 @@ class RepositoryTests {
 
     @Autowired
     StudentDAO studentDAO;
-
-    @BeforeAll
-    static void init() {
-
-    }
-
-    @BeforeEach
-    void setUp() {
-
-    }
-
-    @AfterEach
-    void tearDown() {
-
-    }
 
     @Test
     void save() {
@@ -121,9 +103,7 @@ class RepositoryTests {
 
         Academy academy3 = new Academy("Academy Three");
 
-        Set<Academy> academies = new HashSet<>();
-
-        academies.addAll(Sets.newSet(academy1, academy2, academy3));
+        Set<Academy> academies = new HashSet<>(Sets.newSet(academy1, academy2, academy3));
 
         academyDAO.saveAll(academies);
 
@@ -131,7 +111,7 @@ class RepositoryTests {
 
         academyDAO.findAll().forEach(academies::add);
 
-        assertTrue(academies.size() == 3);
+        assertEquals(academies.size(), 3);
     }
 
     @Test
@@ -143,9 +123,7 @@ class RepositoryTests {
 
         Academy academy3 = new Academy("Academy Three");
 
-        Set<Academy> academies = new HashSet<>();
-
-        academies.addAll(Sets.newSet(academy1, academy2, academy3));
+        Set<Academy> academies = new HashSet<>(Sets.newSet(academy1, academy2, academy3));
 
         academyDAO.saveAll(academies);
 
@@ -153,7 +131,7 @@ class RepositoryTests {
 
         academyDAO.findAllById(Sets.newSet(1L, 2L, 3L, 4L)).forEach(academies::add);
 
-        assertTrue(academies.size() == 3);
+        assertEquals(academies.size(), 3);
     }
 
     @Test
@@ -165,9 +143,7 @@ class RepositoryTests {
 
         Academy academy3 = new Academy("Academy Three");
 
-        Set<Academy> academies = new HashSet<>();
-
-        academies.addAll(Sets.newSet(academy1, academy2, academy3));
+        Set<Academy> academies = new HashSet<>(Sets.newSet(academy1, academy2, academy3));
 
         academyDAO.saveAll(academies);
 
@@ -315,9 +291,9 @@ class RepositoryTests {
 
         Instructor instructor2 = new Instructor("Lois", "Lane", "lane_@lois.arg");
 
-        instructor1 = instructorDAO.save(instructor1);
+        instructorDAO.save(instructor1);
 
-        instructor2 = instructorDAO.save(instructor2);
+        instructorDAO.save(instructor2);
 
         Set<Instructor> instructors = Streams
             .stream(instructorDAO.findByRegistrationDateLessThanEqual(LocalDate.now().plus(1, DAYS)))

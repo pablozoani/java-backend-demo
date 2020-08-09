@@ -1,5 +1,6 @@
 package com.pablozoani.webapp.layers.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pablozoani.webapp.layers.model.base.BaseEntity;
 import com.pablozoani.webapp.layers.model.base.FieldOfStudy;
 import lombok.Getter;
@@ -29,22 +30,20 @@ public class Course extends BaseEntity {
 
     @Getter
     @Setter
+    @JsonManagedReference
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "instructor_id", nullable = false)
     private Instructor instructor;
-
-    @Getter
-    @ManyToMany(fetch = LAZY)
-    @JoinTable(name = "course_student",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private Set<Student> students = new HashSet<>();
 
     @Getter
     @Setter
     @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "academy_id", nullable = false)
     private Academy academy;
+
+    @Getter
+    @ManyToMany(fetch = LAZY, mappedBy = "courses")
+    private Set<Student> students = new HashSet<>();
 
     protected Course() { }
 
@@ -58,6 +57,9 @@ public class Course extends BaseEntity {
 
         this.academy = academy;
     }
+
+    @PreRemove
+    private void removeAllStudents() { getStudents().forEach(student -> student.removeCourse(this)); }
 
     public void addStudent(@NotNull Student student) {
 

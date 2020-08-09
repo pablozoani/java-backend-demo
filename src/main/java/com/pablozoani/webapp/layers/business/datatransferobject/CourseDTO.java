@@ -5,6 +5,7 @@ import com.pablozoani.webapp.layers.model.Course;
 import com.pablozoani.webapp.layers.model.Instructor;
 import com.pablozoani.webapp.layers.model.base.FieldOfStudy;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class CourseDTO {
 
     private Long id;
@@ -20,10 +22,9 @@ public class CourseDTO {
     @Size(min = 3, max = 255)
     private String title;
 
+    private FieldOfStudy field;
 
     private AcademyDTO academy;
-
-    private FieldOfStudy field;
 
     private InstructorDTO instructor;
 
