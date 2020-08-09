@@ -1,9 +1,53 @@
-# Java Backend Demo Project
-
 [![CircleCI](https://circleci.com/gh/pablozoani/java-backend-demo.svg?style=svg)](https://circleci.com/gh/pablozoani/java-backend-demo)
 
-## Run in terminal from the root folder (required: java and maven)
+# Java Backend Demo Project
 
+## Project description
+
+### Simple Web Application
+That models an academy manager from the database, following next stack:
+
+- Database:
+  - MySQL (production)
+  - H2 (development)
+- Object Relational Mapping:
+  - Hibernate
+- Repository, Service and Controller layers
+  - Spring Boot
+- Front-End:
+  - HTML5
+  - Bootstrap
+  - Thymeleaf
+
+DDL & DML for the database schema can be found in:
+```
+./src/main/resources/-schema.sql
+```
+```
+./src/main/resources/data.sql
+```
+
+### Some Object Oriented Programming Examples
+I will be adding some design patterns and OOP demos in the path:
+```
+./src/main/java/z_other_oop
+```
+
+## Run in terminal from the root folder
+```
+git clone https://github.com/pablozoani/java-backend-demo.git
+```
+
+```
+cd java-backend-demo
+```
+
+### Test cases
+```
+mvn test -e
+```
+
+### Web Application
 ```
 mvn spring-boot:run
 ```
@@ -12,15 +56,14 @@ mvn spring-boot:run
 
 ![alt text](java-backend-demo-diagram.png "ERD")
 
-## File tree on latest commit
+## Project file tree on latest commit
 
 ```
 java-backend-demo
- ├─> .circleci
- │   └── config.yml
  ├── .gitignore
  ├── README.md
  ├── java-backend-demo-diagram.png
+ ├── java-backend-demo.iml
  ├── pom.xml
  └─> src
      ├─> main
@@ -37,8 +80,11 @@ java-backend-demo
      │   │           │       ├─> business
      │   │           │       │   ├─> controller
      │   │           │       │   │   ├── AcademyController.java
+     │   │           │       │   │   ├── CourseController.java
      │   │           │       │   │   ├── ExceptionHandlerController.java
-     │   │           │       │   │   └── IndexController.java
+     │   │           │       │   │   ├── IndexController.java
+     │   │           │       │   │   ├── InstructorController.java
+     │   │           │       │   │   └── StudentController.java
      │   │           │       │   ├─> datatransferobject
      │   │           │       │   │   ├── AcademyDTO.java
      │   │           │       │   │   ├── CourseDTO.java
@@ -63,14 +109,20 @@ java-backend-demo
      │   │           │       │   │   │       ├── BasePersonDAO.java
      │   │           │       │   │   │       └── PersonDAO.java
      │   │           │       │   │   ├── InstructorDAO.java
-     │   │           │       │   │   ├── PersonDAO.java
-     │   │           │       │   │   └── StudentDAO.java
+     │   │           │       │   │   ├── StudentDAO.java
+     │   │           │       │   │   └─> base
+     │   │           │       │   │       └── PersonDAO.java
      │   │           │       │   └─> service
      │   │           │       │       ├── AcademyService.java
      │   │           │       │       ├── AcademyServiceImpl.java
      │   │           │       │       ├── CourseService.java
+     │   │           │       │       ├── CourseServiceImpl.java
      │   │           │       │       ├── InstructorService.java
-     │   │           │       │       └── StudentService.java
+     │   │           │       │       ├── InstructorServiceImpl.java
+     │   │           │       │       ├── StudentService.java
+     │   │           │       │       ├── StudentServiceImpl.java
+     │   │           │       │       └─> base
+     │   │           │       │           └── PersonService.java
      │   │           │       └─> model
      │   │           │           ├── Academy.java
      │   │           │           ├── Course.java
@@ -80,7 +132,7 @@ java-backend-demo
      │   │           │               ├── BaseEntity.java
      │   │           │               ├── FieldOfStudy.java
      │   │           │               └── Person.java
-     │   │           └─> zoop
+     │   │           └─> z_other_oop
      │   │               ├── Singleton.java
      │   │               ├─> a_decorator
      │   │               │   ├── Main.java
@@ -212,8 +264,14 @@ java-backend-demo
      │       └─> templates
      │           ├─> academy
      │           │   └── academy.html
+     │           ├─> course
+     │           │   └── course.html
      │           ├── error.html
-     │           └── index.html
+     │           ├── index.html
+     │           ├─> instructor
+     │           │   └── instructor.html
+     │           └─> student
+     │               └── student.html
      └─> test
          ├─> java
          │   ├── ObjectTest.java
@@ -224,8 +282,13 @@ java-backend-demo
          │                   └─> business
          │                       ├─> datatransferobject
          │                       │   └── DTOTests.java
-         │                       └─> repository
-         │                           └── RepositoryTests.java
+         │                       ├─> repository
+         │                       │   └── RepositoryTests.java
+         │                       └─> service
+         │                           ├── AcademyServiceImplTest.java
+         │                           ├── CourseServiceImplTest.java
+         │                           ├── InstructorServiceImplTest.java
+         │                           └── StudentServiceImplTest.java
          └─> resources
              └── application.yml
 ```
