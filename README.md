@@ -51,6 +51,10 @@ mvn test -e
 ```
 mvn spring-boot:run
 ```
+And go to:
+```
+localhost:8080
+```
 
 ## Entity relationship diagram
 
