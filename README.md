@@ -76,7 +76,7 @@ java-backend-demo
  ├── .gitignore
  ├── README.md
  ├── java-backend-demo-diagram.png
- ├── java-backend-demo.iml
+ ├── Dockerfile
  ├── pom.xml
  └─> src
      ├─> main
