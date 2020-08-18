@@ -53,4 +53,22 @@ public interface CourseService {
      * in case the given id is null
      */
     void deleteById(Long id);
+
+    /**
+     * Remove the student with the specified id
+     * from the course with the specified id
+     * 
+     * @param courseId the id of the course
+     * @param studentId the id of the student
+     */
+    void removeStudentById(Long courseId, Long studentId);
+
+    /**
+     * Add the student with the specified id to
+     * the course with the specified id
+     *
+     * @param courseId the id of the course
+     * @param studentId the id of the student
+     */
+    void addStudent(Long courseId, Long studentId);
 }

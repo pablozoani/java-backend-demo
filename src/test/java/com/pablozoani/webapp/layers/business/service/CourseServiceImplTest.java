@@ -7,6 +7,7 @@ import com.pablozoani.webapp.layers.business.exception.NotFoundException;
 import com.pablozoani.webapp.layers.business.repository.AcademyDAO;
 import com.pablozoani.webapp.layers.business.repository.CourseDAO;
 import com.pablozoani.webapp.layers.business.repository.InstructorDAO;
+import com.pablozoani.webapp.layers.business.repository.StudentDAO;
 import com.pablozoani.webapp.layers.model.Academy;
 import com.pablozoani.webapp.layers.model.Course;
 import com.pablozoani.webapp.layers.model.Instructor;
@@ -39,12 +40,15 @@ class CourseServiceImplTest {
     @Mock
     AcademyDAO academyDAO;
 
+    @Mock
+    StudentDAO studentDAO;
+
     @BeforeEach
     void setUp() {
 
         MockitoAnnotations.initMocks(this);
 
-        courseService = new CourseServiceImpl(courseDAO, instructorDAO, academyDAO);
+        courseService = new CourseServiceImpl(courseDAO, instructorDAO, academyDAO, studentDAO);
     }
 
     @Test

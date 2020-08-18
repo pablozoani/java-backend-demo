@@ -1,8 +1,11 @@
 package com.pablozoani.webapp.layers.business.service;
 
+import com.pablozoani.webapp.layers.business.datatransferobject.CourseDTO;
 import com.pablozoani.webapp.layers.business.datatransferobject.StudentDTO;
 import com.pablozoani.webapp.layers.business.service.base.PersonService;
 import com.pablozoani.webapp.layers.model.Student;
+
+import java.util.Set;
 
 public interface StudentService extends PersonService<Student> {
 
@@ -30,4 +33,13 @@ public interface StudentService extends PersonService<Student> {
      * @param id of the student
      */
     void deleteById(Long id);
+
+    /**
+     * Get all courses from the student with
+     * the specified id
+     *
+     * @param id of the student
+     * @return a Set of CourseDTO
+     */
+    Set<CourseDTO> getCoursesById(Long id);
 }

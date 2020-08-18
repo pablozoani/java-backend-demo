@@ -1,5 +1,6 @@
 package com.pablozoani.webapp.layers.business.service;
 
+import com.pablozoani.webapp.layers.business.datatransferobject.CourseDTO;
 import com.pablozoani.webapp.layers.business.datatransferobject.StudentDTO;
 import com.pablozoani.webapp.layers.business.exception.NotFoundException;
 import com.pablozoani.webapp.layers.business.repository.StudentDAO;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -79,5 +81,20 @@ public class StudentServiceImpl implements StudentService {
         log.debug("deleteById() -> {}", id);
 
         studentDAO.deleteById(id);
+    }
+
+    @Override
+    public Set<CourseDTO> getCoursesById(Long id) {
+
+        log.debug("getCoursesById");
+
+        Student student = findById(id);
+
+        Set<CourseDTO> courses = student.getCourses()
+                .stream()
+                .map(course -> CourseDTO.toDTO(course))
+                .collect(Collectors.toSet());
+
+        return courses;
     }
 }

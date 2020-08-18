@@ -38,4 +38,15 @@ public class ExceptionHandlerController {
 
         return new ModelAndView(ERROR_PAGE_URL, "exception", exception);
     }
+
+    @ResponseStatus(NOT_FOUND)
+    @ExceptionHandler(Exception.class)
+    public ModelAndView allExceptions(Exception exception) {
+
+        log.debug("allExceptions()");
+
+        log.debug(exception.getMessage());
+
+        return new ModelAndView(ERROR_PAGE_URL, "exception", exception);
+    }
 }

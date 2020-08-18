@@ -5,9 +5,11 @@ import com.pablozoani.webapp.layers.business.exception.NotFoundException;
 import com.pablozoani.webapp.layers.business.repository.AcademyDAO;
 import com.pablozoani.webapp.layers.business.repository.CourseDAO;
 import com.pablozoani.webapp.layers.business.repository.InstructorDAO;
+import com.pablozoani.webapp.layers.business.repository.StudentDAO;
 import com.pablozoani.webapp.layers.model.Academy;
 import com.pablozoani.webapp.layers.model.Course;
 import com.pablozoani.webapp.layers.model.Instructor;
+import com.pablozoani.webapp.layers.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,17 +28,22 @@ public class CourseServiceImpl implements CourseService {
     private final InstructorDAO instructorDAO;
 
     private final AcademyDAO academyDAO;
+    
+    private final StudentDAO studentDAO;
 
     @Autowired
     public CourseServiceImpl(CourseDAO courseDAO,
                              InstructorDAO instructorDAO,
-                             AcademyDAO academyDAO) {
+                             AcademyDAO academyDAO,
+                             StudentDAO studentDAO) {
 
         this.courseDAO = courseDAO;
 
         this.instructorDAO = instructorDAO;
 
         this.academyDAO = academyDAO;
+        
+        this.studentDAO = studentDAO;
     }
 
     @Transactional
@@ -110,8 +117,44 @@ public class CourseServiceImpl implements CourseService {
         courseDAO.deleteById(id);
     }
 
+    @Transactional
+    @Override
+    public void removeStudentById(Long courseId, Long studentId) {
+        
+        log.debug("removeStudentById()");
+
+        Optional<Course> courseOptional = courseDAO.findById(courseId);
+        
+        Course course = courseOptional.orElseThrow(NotFoundException::new);
+
+        Optional<Student> studentOptional = studentDAO.findById(studentId);
+        
+        Student student = studentOptional.orElseThrow(NotFoundException::new);
+        
+        course.removeStudent(student);
+    }
+
+    @Transactional
+    @Override
+    public void addStudent(Long courseId, Long studentId) {
+
+        log.debug("addStudent({}, {})", courseId, studentId);
+
+        Optional<Student> studentOptional = studentDAO.findById(studentId);
+
+        Student student = studentOptional.orElseThrow(NotFoundException::new);
+
+        Optional<Course> courseOptional = courseDAO.findById(courseId);
+
+        Course course = courseOptional.orElseThrow(NotFoundException::new);
+
+        course.addStudent(student);
+    }
+
     @Override
     public CourseDTO findDtoById(Long id) {
+
+        log.debug("findDtoById()");
 
         Course entity = findById(id);
 

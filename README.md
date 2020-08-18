@@ -47,9 +47,18 @@ cd java-backend-demo
 mvn test -e
 ```
 
-### Web Application
+### Run Web App
 ```
 mvn spring-boot:run
+```
+
+### Build and Run Docker File
+```
+docker build -t java-backend-demo:1.0 .
+```
+
+```
+docker container run -p 8080:8080 java-backend-demo:1.0
 ```
 
 ## Entity relationship diagram

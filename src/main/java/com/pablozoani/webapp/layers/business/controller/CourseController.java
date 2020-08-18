@@ -24,7 +24,7 @@ import java.util.Set;
 @Controller
 public class CourseController {
 
-    public static final String COURSE_URL = "/course/course";
+    public static final String COURSE_URL = "course/course";
 
     private final InstructorService instructorService;
 
