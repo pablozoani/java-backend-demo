@@ -1,35 +1,8 @@
 spring:
   output:
     ansi:
-      enabled: ALWAYS
+      enabled: always
   main:
     banner-mode: off
   profiles:
     active: default
-  h2:
-    console:
-      enabled: true
-  datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-    initialization-mode: always
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-      javax:
-        persistence:
-          schema-generation:
-            database:
-              action: drop-and-create
-logging:
-  level:
-    root: ERROR
-    com:
-      pablozoani: DEBUG
-    org:
-      springframework: INFO
-      hibernate: ERROR

@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-@Profile("default")
+@Profile({"default", "dev", "prod"})
 @Repository
 public interface AcademyDAO extends CrudRepository<Academy, Long> {
 
