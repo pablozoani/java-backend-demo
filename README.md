@@ -21,7 +21,7 @@ That models an academy manager from the database, following next stack:
 
 DDL & DML for the database schema can be found in:
 ```
-./src/main/resources/-schema.sql
+./src/main/resources/scripts/-schema.sql
 ```
 ```
 ./src/main/resources/data.sql
