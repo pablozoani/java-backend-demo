@@ -4,6 +4,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: java_backend_demo_dev_user
     password: secret
+    platform: mysql
   h2:
     console:
       enabled: false
@@ -21,6 +22,6 @@ server:
 logging:
   level:
     root: warn
-    org.springframework: debug
-    org.hibernate: info
+    org.springframework: info
+    org.hibernate: error
     com.pablozoani: debug
