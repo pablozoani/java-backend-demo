@@ -18,10 +18,11 @@ That models an academy manager from the database, following next stack:
   - HTML5
   - Bootstrap
   - Thymeleaf
+  - JavaScript
 
 DDL & DML for the database schema can be found in:
 ```
-./src/main/resources/-schema.sql
+./src/main/resources/scripts/-schema.sql
 ```
 ```
 ./src/main/resources/data.sql
@@ -76,7 +77,7 @@ java-backend-demo
  ├── .gitignore
  ├── README.md
  ├── java-backend-demo-diagram.png
- ├── java-backend-demo.iml
+ ├── Dockerfile
  ├── pom.xml
  └─> src
      ├─> main
