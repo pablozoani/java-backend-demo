@@ -1,5 +1,7 @@
 # MySQL DDL
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 CREATE TABLE `academy` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -46,4 +48,6 @@ CREATE TABLE `course_student` (
   KEY `student_id` (`student_id`,`course_id`),
   CONSTRAINT `course_student_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
   CONSTRAINT `course_student_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+SET FOREIGN_KEY_CHECKS = 1;

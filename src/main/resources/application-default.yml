@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      javax:
+        persistence:
+          schema-generation:
+            database:
+              action: create
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: warn
+    org.springframework: info
+    org.hibernate: info
+    com.pablozoani: debug
