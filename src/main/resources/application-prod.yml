@@ -6,6 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: java_backend_demo_prod_user
     password: secret
+    platform: mysql
   h2:
     console:
       enabled: false
