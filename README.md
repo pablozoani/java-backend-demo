@@ -18,6 +18,7 @@ That models an academy manager from the database, following next stack:
   - HTML5
   - Bootstrap
   - Thymeleaf
+  - JavaScript
 
 DDL & DML for the database schema can be found in:
 ```
