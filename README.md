@@ -4,7 +4,7 @@
 
 ## Project description
 
-### Simple Web Application
+### A Server Side Rendering Web Application
 That models an academy manager from the database, following next stack:
 
 - Database:
